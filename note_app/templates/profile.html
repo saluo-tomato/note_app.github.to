@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>用户中心</title>
+</head>
+<body>
+    <h2>欢迎，{{ user.username }}</h2>
+    {% if error %}
+    <p style="color:red;">{{ error }}</p>
+    {% endif %}
+    {% if success %}
+    <p style="color:green;">{{ success }}</p>
+    {% endif %}
+
+    <h3>更改密码</h3>
+    <form method="post">
+        <label>旧密码：<input type="password" name="old_password" required></label><br>
+        <label>新密码：<input type="password" name="new_password" required></label><br><br>
+        <button type="submit">更新密码</button>
+    </form>
+
+    <br>
+    <a href="{{ url_for('dashboard') }}">返回首页</a>
+    <br><br>
+    <a href="{{ url_for('logout') }}" style="color:blue;">退出登录</a>
+    <br><br>
+    <a href="{{ url_for('logout_account') }}" onclick="return confirm('确定注销账户吗？此操作不可恢复！');" style="color:red;">注销账户</a>
+</body>
+</html>

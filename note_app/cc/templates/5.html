@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>我的笔记</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .note-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .note-item {
+            background: #ffffff;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+        }
+
+        .note-item h5 {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            color: #212529;
+        }
+
+        .note-item p {
+            margin-bottom: 0.5rem;
+            color: #495057;
+        }
+
+        .btn-success {
+            background-color: #198754;
+            border-color: #198754;
+            color: #fff;
+        }
+
+        .btn-success:hover {
+            background-color: #157347;
+            border-color: #146c43;
+        }
+
+        .btn-warning {
+            background-color: #ffc107;
+            border-color: #ffc107;
+            color: #212529;
+        }
+
+        .btn-warning:hover {
+            background-color: #ffca2c;
+            border-color: #ffcd39;
+        }
+
+        .btn-sm {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.875rem;
+            border-radius: 0.2rem;
+        }
+
+        .mb-4 {
+            margin-bottom: 1.5rem;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mb-4">我的笔记</h1>
+        <a href="{{ url_for('create_note') }}" class="btn btn-success mb-4">创建新笔记</a>
+        <ul class="note-list">
+            {% for note in notes %}
+                <li class="note-item">
+                    <h5>{{ note.title }}</h5>
+                    <p>{{ note.content[:100] }}...</p>
+                    <a href="{{ url_for('edit_note', id=note.id) }}" class="btn btn-warning btn-sm">编辑</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
